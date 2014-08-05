@@ -345,12 +345,25 @@ h3 {
   margin: 1.5em 0; }
 
 button {
-  background: #FFF;
-  border: 0;
+  background: #a73030;
+  border: 5px solid #a73030;
+  border-radius: 3px;
+  color: #FFF;
   font-family: "Vollkorn", Georgia, Times, serif;
   font-size: 20px;
-  padding: 12px 20px 10px; }
+  padding: 12px 20px 10px;
+  text-shadow: 1px 1px 1px black; }
   button i {
-    color: #A73030;
     font-size: 25px;
     margin-right: 5px; }
+  button:hover {
+    background: #FFF;
+    color: #000;
+    text-shadow: none; }
+  button:active {
+    background: #EEE;
+    color: #000;
+    position: relative;
+    text-shadow: none;
+    left: 1px;
+    top: 2px; }
