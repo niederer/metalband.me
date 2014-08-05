@@ -1,0 +1,28 @@
+@import "normalize";
+
+$font-family: 'Vollkorn', Georgia, Times, serif;
+
+body {
+  background: #111;
+  font-family: $font-family;
+  color: #FFF;
+  padding-top: 120px;
+  text-align: center;
+}
+
+h2 {
+  font-weight: normal;
+}
+
+button {
+  background: #FFF;
+  border: 0;
+  font-family: $font-family;
+  font-size: 20px;
+  padding: 12px 20px 10px;
+  i {
+    color: #A73030;
+    font-size: 25px;
+    margin-right: 5px;
+  }
+}
