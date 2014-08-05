@@ -5,7 +5,7 @@
   define('CSV_WORD', 0);
   define('CSV_IS_NOUN', 1);
   define('CSV_IS_ADJECTIVE', 2);
- 
+
   $nouns = array();
   $adjectives = array();
 
@@ -44,13 +44,13 @@
   </head>
   <body>
 
-    <h2>
+    <h1>
       Your metal band name is...
-    </h2>
+    </h1>
 
-    <h3>
+    <h2>
       <?= $adjectives[rand(0, count($adjectives) - 1)] ?> <?= $nouns[rand(0, count($nouns) - 1)] ?>
-    </h3>    
+    </h2>
 
     <form action="/">
       <button type="submit">
