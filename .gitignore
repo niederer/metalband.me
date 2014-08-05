@@ -1,0 +1,4 @@
+vendor
+scss/.sass-cache
+.DS_Store
+words.csv
