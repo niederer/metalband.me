@@ -337,10 +337,11 @@ body {
   padding-top: 120px;
   text-align: center; }
 
-h2 {
+h1 {
+  font-size: 1.5em;
   font-weight: normal; }
 
-h3 {
+h2 {
   font-size: 3em;
   margin: 1.5em 0; }
 
