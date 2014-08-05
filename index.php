@@ -8,7 +8,7 @@
 
   $nouns = array();
   $adjectives = array();
-
+  ini_set("auto_detect_line_endings", true);
 
   if (($handle = fopen("../words.csv", "r")) !== FALSE) {
     while (($data = fgetcsv($handle, 1000, ",")) !== FALSE) {
