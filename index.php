@@ -2,32 +2,45 @@
 <?php
 
   //gonna be ugly for the first cut, don't judge
-  define('CSV_WORD', 0);
-  define('CSV_IS_NOUN', 1);
-  define('CSV_IS_ADJECTIVE', 2);
+  require_once('../../metal_db_credentials.php');
+  $mysqli = new mysqli(METAL_DB_HOST, METAL_DB_USER, METAL_DB_PASSWORD, METAL_DB_DATABASE);
+  if (!$mysqli->connect_errno) {
+    $adjective_result = $mysqli->query("SELECT word FROM words WHERE is_adjective = 1 ORDER BY rand() LIMIT 1");
+    $adjective_row = $adjective_result->fetch_assoc();
+    $adjective = $adjective_row['word'];
 
-  $nouns = array();
-  $adjectives = array();
-  ini_set("auto_detect_line_endings", true);
+    $noun_result = $mysqli->query("SELECT word FROM words WHERE is_noun = 1 ORDER BY rand() LIMIT 1");
+    $noun_row = $noun_result->fetch_assoc();
+    $noun = $noun_row['word'];
 
-  if (($handle = fopen("../words.csv", "r")) !== FALSE) {
-    while (($data = fgetcsv($handle, 1000, ",")) !== FALSE) {
-      if ($data[CSV_IS_NOUN] == 'is_noun') {
-        continue;
+    $band_name = implode(' ', array($adjective, $noun));
+  } else {
+    define('CSV_WORD', 0);
+    define('CSV_IS_NOUN', 1);
+    define('CSV_IS_ADJECTIVE', 2);
+
+    $nouns = array();
+    $adjectives = array();
+    ini_set("auto_detect_line_endings", true);
+
+    if (($handle = fopen("../words.csv", "r")) !== FALSE) {
+      while (($data = fgetcsv($handle, 1000, ",")) !== FALSE) {
+        if ($data[CSV_IS_NOUN] == 'is_noun') {
+          continue;
+        }
+
+        if ($data[CSV_IS_NOUN] == 'TRUE') {
+          $nouns[] = $data[CSV_WORD];
+        }
+
+        if ($data[CSV_IS_ADJECTIVE] == 'TRUE') {
+          $adjectives[] = $data[CSV_WORD];
+        }
       }
-
-      if ($data[CSV_IS_NOUN] == 'TRUE') {
-        $nouns[] = $data[CSV_WORD];
-      }
-
-      if ($data[CSV_IS_ADJECTIVE] == 'TRUE') {
-        $adjectives[] = $data[CSV_WORD];
-      }
+      fclose($handle);
     }
-    fclose($handle);
+    $band_name = $adjectives[rand(0, count($adjectives) - 1)] . ' ' . $nouns[rand(0, count($nouns) - 1)];
   }
-  $band_name = $adjectives[rand(0, count($adjectives) - 1)] . ' ' . $nouns[rand(0, count($nouns) - 1)];
-
 ?>
 <html lang="en">
   <head>
