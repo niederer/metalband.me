@@ -26,6 +26,7 @@
     }
     fclose($handle);
   }
+  $band_name = $adjectives[rand(0, count($adjectives) - 1)] . ' ' . $nouns[rand(0, count($nouns) - 1)];
 
 ?>
 <html lang="en">
@@ -49,7 +50,7 @@
     </h1>
 
     <h2>
-      <?= $adjectives[rand(0, count($adjectives) - 1)] ?> <?= $nouns[rand(0, count($nouns) - 1)] ?>
+      <?= $band_name ?>
     </h2>
 
     <form action="/">
@@ -60,6 +61,9 @@
         </span>
       </button>
     </form>
+
+    <a href="https://twitter.com/share" class="twitter-share-button" data-lang="en" data-count="none" data-text="My metal band name is <?= $band_name ?>! via @metalbandme">Tweet</a>
+    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="https://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
 
     <script>
       (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){

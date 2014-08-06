@@ -352,6 +352,7 @@ button {
   color: #FFF;
   font-family: "Vollkorn", Georgia, Times, serif;
   font-size: 20px;
+  margin-bottom: 20px;
   padding: 12px 20px 10px;
   text-shadow: 1px 1px 1px black; }
   button i {
