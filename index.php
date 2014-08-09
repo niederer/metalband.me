@@ -1,6 +1,20 @@
 <!DOCTYPE html>
 <?php
 
+  setlocale(LC_ALL, 'en_US.UTF8');
+  function toSlug($str, $replace=array(), $delimiter='-') {
+    if( !empty($replace) ) {
+      $str = str_replace((array)$replace, ' ', $str);
+    }
+
+    $clean = iconv('UTF-8', 'ASCII//TRANSLIT', $str);
+    $clean = preg_replace("/[^a-zA-Z0-9\/_|+ -]/", '', $clean);
+    $clean = strtolower(trim($clean, '-'));
+    $clean = preg_replace("/[\/_|+ -]+/", $delimiter, $clean);
+
+    return $clean;
+  }
+
   //gonna be ugly for the first cut, don't judge
   require_once('../../metal_db_credentials.php');
   $mysqli = new mysqli(METAL_DB_HOST, METAL_DB_USER, METAL_DB_PASSWORD, METAL_DB_DATABASE);
@@ -14,6 +28,8 @@
     $noun = $noun_row['word'];
 
     $band_name = implode(' ', array($adjective, $noun));
+    $slug = toSlug($band_name);
+    $mysqli->query("INSERT INTO bands (slug, name, view_count) VALUES ('{$mysqli->real_escape_string($slug)}', '{$mysqli->real_escape_string($band_name)}', 1) ON DUPLICATE KEY UPDATE view_count=view_count+1");
   } else {
     define('CSV_WORD', 0);
     define('CSV_IS_NOUN', 1);
