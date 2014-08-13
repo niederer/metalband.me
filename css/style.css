@@ -331,7 +331,7 @@ table {
   border-spacing: 0; }
 
 body {
-  background: #111;
+  background: black url("../images/flamez.png") no-repeat fixed bottom center;
   font-family: "Vollkorn", Georgia, Times, serif;
   color: #FFF;
   padding-top: 120px;
