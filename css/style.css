@@ -330,6 +330,10 @@ table {
   border-collapse: collapse;
   border-spacing: 0; }
 
+html,
+body {
+  height: 100%; }
+
 body {
   background: black url("../images/flamez.png") no-repeat fixed bottom center;
   font-family: "Vollkorn", Georgia, Times, serif;

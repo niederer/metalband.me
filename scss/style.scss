@@ -3,6 +3,11 @@
 $font-family: 'Vollkorn', Georgia, Times, serif;
 $red: #A73030;
 
+html,
+body {
+  height: 100%;
+}
+
 body {
   background: #000 url('../images/flamez.png') no-repeat fixed bottom center;
   font-family: $font-family;
